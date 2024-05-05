@@ -1,0 +1,7 @@
+name: PluginTest
+version: '1.0'
+main: com.lucas.plugintest.PluginTest
+api-version: '1.16'
+commands:
+  block:
+    description: block someone to move
