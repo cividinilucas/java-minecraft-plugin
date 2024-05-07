@@ -15,7 +15,6 @@ public final class PluginTest extends JavaPlugin{
         // Plugin startup logic
         System.out.println("Plugin enabled");
 
-    getCommand("block").setExecutor(new BlockCommand());
     getCommand("kick").setExecutor(new KickBlockCommand());
     getCommand("ban").setExecutor(new BanBlockCommand());
 
