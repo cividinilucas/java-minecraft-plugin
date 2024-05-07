@@ -5,6 +5,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
+
 public class KickBlockCommand implements CommandExecutor{
 
         @Override
@@ -24,8 +26,8 @@ public class KickBlockCommand implements CommandExecutor{
             }
 
             //verificar se numero correto do arg foi fornecido
-            if(args.length != 1){
-                player.sendMessage("Uso correto: /kick <jogador>");
+            if(args.length < 1){
+                player.sendMessage("Uso correto: /kick <jogador> <motivo>");
                 return false;
             }
 
@@ -38,8 +40,14 @@ public class KickBlockCommand implements CommandExecutor{
                 return false;
             }
 
+            //criar variavel pro motivo
+            String reason = "Sem motivo especificado";
+            if(args.length > 1){
+            reason = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
+            }
+
             //expulsar
-            target.kickPlayer("voce foi expulso pelo " + player.getDisplayName());
+            target.kickPlayer("voce foi expulso pelo " + player.getDisplayName() + " pelo motivo: " + reason);
             player.sendMessage("Voce kickou o jogador " + target.getName());
             return true;
         }
