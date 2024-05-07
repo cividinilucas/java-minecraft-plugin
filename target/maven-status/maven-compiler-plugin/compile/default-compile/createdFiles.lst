@@ -1,3 +1,4 @@
 com\lucas\plugintest\KickBlockCommand.class
 com\lucas\plugintest\PluginTest.class
+com\lucas\plugintest\BanBlockCommand.class
 com\lucas\plugintest\BlockCommand.class

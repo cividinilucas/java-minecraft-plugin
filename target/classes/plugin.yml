@@ -7,3 +7,7 @@ commands:
     description: block someone to move
   kick:
     description: kick a player
+  ban:
+    description: ban a player
+
+
