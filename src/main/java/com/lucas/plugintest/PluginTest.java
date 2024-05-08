@@ -11,9 +11,11 @@ public final class PluginTest extends JavaPlugin{
         getConfig().options().copyDefaults();
         saveDefaultConfig();
 
+
+        //instancia dos comandos
         getCommand("kick").setExecutor(new KickBlockCommand());
         getCommand("ban").setExecutor(new BanBlockCommand());
         getCommand("config").setExecutor(new ConfigCommand());
-
+        getCommand("ping").setExecutor(new PingBlockCommand());
     }
 }
