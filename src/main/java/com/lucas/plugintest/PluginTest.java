@@ -1,11 +1,4 @@
 package com.lucas.plugintest;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerEggThrowEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PluginTest extends JavaPlugin{
@@ -17,7 +10,6 @@ public final class PluginTest extends JavaPlugin{
 
         getConfig().options().copyDefaults();
         saveDefaultConfig();
-
 
         getCommand("kick").setExecutor(new KickBlockCommand());
         getCommand("ban").setExecutor(new BanBlockCommand());
