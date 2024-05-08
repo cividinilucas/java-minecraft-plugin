@@ -6,13 +6,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.material.Colorable;
 
-import javax.swing.*;
 import java.util.Arrays;
 
 public class BanBlockCommand implements CommandExecutor {
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -24,14 +21,14 @@ public class BanBlockCommand implements CommandExecutor {
         Player player = (Player) sender;
 
         //testando a permissao
-        if(!player.hasPermission("plugintest.kick")){
+        if(!player.hasPermission("plugintest.ban")){
             player.sendMessage("Você não tem permissão");
             return false;
         }
 
 
         //se argumentos forem menor que um, quer dizer que comando foi executado de forma incorreta
-        if(args.length < 1){
+        if(args.length < 1 || args.length > 2){
             player.sendMessage("Uso correto: /ban <Jogador> <Motivo>");
             return false;
         }
@@ -44,9 +41,7 @@ public class BanBlockCommand implements CommandExecutor {
             return false;
         }
 
-        String reason = "Sem motivo específicado";
-
-
+        String reason = "Sem motivo específico";
         //se os arguments forem > 1, significa que a motivo, senao ele nao tera e subira a msg padrao da var
         if(args.length > 1){
            reason = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
@@ -57,6 +52,7 @@ public class BanBlockCommand implements CommandExecutor {
         player.sendMessage("Você baniu o jogador " + target.getDisplayName() + "Pelo motivo: " + reason);
 
         return true;
+
     }
 
 }
