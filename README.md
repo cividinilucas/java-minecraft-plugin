@@ -1,4 +1,4 @@
-# java-minecraft-plugin
+# Testing Java + Bukkit
 
 In this repository we will be developing a minecraft plugin as we learn Spigot and Bukkit development.
 
