@@ -49,8 +49,7 @@ public class KickBlockCommand implements CommandExecutor{
             //expulsar
             target.kickPlayer("voce foi expulso pelo " + player.getDisplayName() + " pelo motivo: " + reason);
             player.sendMessage("Voce kickou o jogador " + target.getName());
-            return true;
-        }
+            return true;        }
 }
 
 
