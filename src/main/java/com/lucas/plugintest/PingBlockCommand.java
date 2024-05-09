@@ -9,8 +9,7 @@ import org.bukkit.entity.Player;
 public class PingBlockCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-
-
+        
         if (!(sender instanceof Player)) {
             sender.sendMessage("Esse comando só pode ser executado por players!");
             return false;
