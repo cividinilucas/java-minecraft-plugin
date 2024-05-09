@@ -44,10 +44,10 @@ public class MuteBlockCommand implements CommandExecutor, Listener {
 
         String reason = args.length > 1 ? String.join(" ", args[1]) : "Sem motivo específico";
 
-        if (isPlayerMuted(target)) {
+     /*  if (isPlayerMuted(target)) {
             player.sendMessage("O jogador já está mutado.");
             return false;
-        }
+        }*/
 
         mutedPlayers.put(target, reason);
         player.sendMessage("Você mutou o jogador " + target.getName() + " por: " + reason);
@@ -62,7 +62,8 @@ public class MuteBlockCommand implements CommandExecutor, Listener {
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
-        if (isPlayerMuted(player)) {
+        if (isPlayerMuted(player)){
+            System.out.println("got to event cancel");
             event.setCancelled(true);
             player.sendMessage("Você está mutado e não pode enviar mensagens.");
         }
