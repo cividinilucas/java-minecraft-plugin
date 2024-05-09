@@ -18,5 +18,7 @@ public final class PluginTest extends JavaPlugin{
         getCommand("config").setExecutor(new ConfigCommand());
         getCommand("ping").setExecutor(new PingBlockCommand());
         getCommand("mute").setExecutor(new MuteBlockCommand());
+
+        getServer().getPluginManager().registerEvents(new MuteBlockCommand(), this);
     }
 }

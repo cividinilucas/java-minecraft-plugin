@@ -1,77 +1,70 @@
 package com.lucas.plugintest;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.*;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.generator.ChunkGenerator;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginDescriptionFile;
-import org.bukkit.plugin.PluginLoader;
+import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.io.InputStream;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.StringJoiner;
-import java.util.logging.Logger;
+import java.util.HashMap;
+import java.util.Map;
 
-import static org.bukkit.Bukkit.getServer;
+public class MuteBlockCommand implements CommandExecutor, Listener {
 
-public class MuteBlockCommand implements CommandExecutor, Listener{
+    private final Map<Player, String> mutedPlayers = new HashMap<>();
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-
-        if(!(sender instanceof Player)){
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (!(sender instanceof Player)) {
             sender.sendMessage("Esse comando só pode ser executado por players!");
             return false;
         }
 
         Player player = (Player) sender;
 
-        if(!player.hasPermission("plugintest.mute")){
+        if (!player.hasPermission("plugintest.mute")) {
             player.sendMessage("Você não tem permissão!");
             return false;
         }
 
-        if(args.length < 1 || args.length > 2){
+        if (args.length < 1 || args.length > 2) {
             player.sendMessage("Uso correto: /mute <Jogador> <Motivo>");
+            return false;
         }
 
         Player target = player.getServer().getPlayer(args[0]);
 
-        if(target == null){
+        if (target == null) {
             player.sendMessage("Alvo não encontrado");
+            return false;
         }
 
-        target.getServer().getPluginManager().registerEvents(this, (Plugin) this);
+        String reason = args.length > 1 ? String.join(" ", args[1]) : "Sem motivo específico";
 
-        String reason = "Sem motivo específico";
-        if(args.length > 1){
-            reason = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
+        if (isPlayerMuted(target)) {
+            player.sendMessage("O jogador já está mutado.");
+            return false;
         }
+
+        mutedPlayers.put(target, reason);
+        player.sendMessage("Você mutou o jogador " + target.getName() + " por: " + reason);
+
         return true;
     }
 
-
-
     private boolean isPlayerMuted(Player player) {
-        return false;
+        return mutedPlayers.containsKey(player);
     }
 
     @EventHandler
-    public void onPlayerChat(AsyncPlayerChatEvent event){
-        if(isPlayerMuted(event.getPlayer())){
-                event.setCancelled(true);
-                event.getPlayer().sendMessage("Você está mutado!");
+    public void onPlayerChat(AsyncPlayerChatEvent event) {
+        Player player = event.getPlayer();
+        if (isPlayerMuted(player)) {
+            event.setCancelled(true);
+            player.sendMessage("Você está mutado e não pode enviar mensagens.");
         }
     }
-
 }
