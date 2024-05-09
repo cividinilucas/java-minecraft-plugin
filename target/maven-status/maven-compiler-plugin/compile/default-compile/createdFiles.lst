@@ -2,4 +2,5 @@ com\lucas\plugintest\ConfigCommand.class
 com\lucas\plugintest\KickBlockCommand.class
 com\lucas\plugintest\PluginTest.class
 com\lucas\plugintest\PingBlockCommand.class
+com\lucas\plugintest\MuteBlockCommand.class
 com\lucas\plugintest\BanBlockCommand.class
