@@ -47,8 +47,8 @@ public class BanBlockCommand implements CommandExecutor, Listener {
         if(target == null){
             player.sendMessage("Jogador não encontrado.");
         }
-        UUID targetUUID = target.getUniqueId();
 
+        UUID targetUUID = target.getUniqueId();
         String reason = args.length > 1 ? String.join(" ", Arrays.copyOfRange(args, 1, args.length)) : "Sem motivo específico";
 
         if(isPlayerBanned(targetUUID)){
