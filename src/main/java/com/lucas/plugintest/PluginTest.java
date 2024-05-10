@@ -16,7 +16,7 @@ public final class PluginTest extends JavaPlugin{
 
         //instancia dos comandos
         getCommand("kick").setExecutor(new KickBlockCommand());
-        getCommand("ban").setExecutor(new BanBlockCommand());
+        getCommand("ban").setExecutor(banBlockCommand);
         getCommand("config").setExecutor(new ConfigCommand());
         getCommand("ping").setExecutor(new PingBlockCommand());
         getCommand("mute").setExecutor(muteBlockCommand);
@@ -24,5 +24,6 @@ public final class PluginTest extends JavaPlugin{
 
         getServer().getPluginManager().registerEvents(muteBlockCommand, this);
         getServer().getPluginManager().registerEvents(banBlockCommand, this);
+
     }
 }
