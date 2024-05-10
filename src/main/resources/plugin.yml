@@ -7,5 +7,11 @@ commands:
     description: kick a player
   ban:
     description: ban a player
+  config:
+  ping:
+    description: take the ping of the player
+  mute:
+    description: mute a player
+
 
 

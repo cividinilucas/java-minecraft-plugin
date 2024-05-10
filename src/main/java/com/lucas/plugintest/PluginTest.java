@@ -1,11 +1,4 @@
 package com.lucas.plugintest;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerEggThrowEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PluginTest extends JavaPlugin{
@@ -15,8 +8,22 @@ public final class PluginTest extends JavaPlugin{
         // Plugin startup logic
         System.out.println("Plugin enabled");
 
-    getCommand("kick").setExecutor(new KickBlockCommand());
-    getCommand("ban").setExecutor(new BanBlockCommand());
+        getConfig().options().copyDefaults();
+        saveDefaultConfig();
+
+        MuteBlockCommand muteBlockCommand = new MuteBlockCommand();
+        BanBlockCommand banBlockCommand = new BanBlockCommand();
+
+        //instancia dos comandos
+        getCommand("kick").setExecutor(new KickBlockCommand());
+        getCommand("ban").setExecutor(banBlockCommand);
+        getCommand("config").setExecutor(new ConfigCommand());
+        getCommand("ping").setExecutor(new PingBlockCommand());
+        getCommand("mute").setExecutor(muteBlockCommand);
+        getCommand("unmute").setExecutor(new UnmuteBlockCommand());
+
+        getServer().getPluginManager().registerEvents(muteBlockCommand, this);
+        getServer().getPluginManager().registerEvents(banBlockCommand, this);
 
     }
 }
