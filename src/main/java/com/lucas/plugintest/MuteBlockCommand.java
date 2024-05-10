@@ -9,12 +9,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class MuteBlockCommand implements CommandExecutor, Listener {
 
-    private final Map<Player, String> mutedPlayers = new HashMap<>();
+    private final Map<UUID, String> mutedPlayers = new HashMap<>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -37,33 +39,37 @@ public class MuteBlockCommand implements CommandExecutor, Listener {
 
         Player target = player.getServer().getPlayer(args[0]);
 
+
         if (target == null) {
             player.sendMessage(ChatColor.GREEN + "Alvo não encontrado");
             return false;
         }
 
-        String reason = args.length > 1 ? String.join(" ", args[1]) : "Sem motivo específico";
+        UUID uuidTarget = target.getUniqueId();
+        String reason = args.length > 1 ? String.join(" ", Arrays.copyOfRange(args, 1, args.length)) : "Sem motivo específico";
 
-        if (isPlayerMuted(target)) {
+        if (isPlayerMuted(uuidTarget)) {
             player.sendMessage(ChatColor.GREEN + "O jogador já está mutado.");
             return false;
         }
 
-        mutedPlayers.put(target, reason);
+
+        mutedPlayers.put(uuidTarget, reason);
         target.sendMessage(ChatColor.RED + " Você foi mutado por: " + reason);
         player.sendMessage(ChatColor.GREEN + "Você mutou o jogador " + target.getName() + " por: " + reason);
 
         return true;
     }
 
-    private boolean isPlayerMuted(Player player) {
-        return mutedPlayers.containsKey(player);
+    private boolean isPlayerMuted(UUID uuidPlayer) {
+        return mutedPlayers.containsKey(uuidPlayer);
     }
 
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
+        UUID uuid = event.getPlayer().getUniqueId();
         Player player = event.getPlayer();
-        if (isPlayerMuted(player)){
+        if (isPlayerMuted(uuid)){
             event.setCancelled(true);
             player.sendMessage(ChatColor.RED + "Você está mutado e não pode enviar mensagens.");
         }
