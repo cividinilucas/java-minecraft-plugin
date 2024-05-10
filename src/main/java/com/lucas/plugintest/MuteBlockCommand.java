@@ -1,5 +1,6 @@
 package com.lucas.plugintest;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -7,7 +8,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,19 +38,20 @@ public class MuteBlockCommand implements CommandExecutor, Listener {
         Player target = player.getServer().getPlayer(args[0]);
 
         if (target == null) {
-            player.sendMessage("Alvo não encontrado");
+            player.sendMessage(ChatColor.GREEN + "Alvo não encontrado");
             return false;
         }
 
         String reason = args.length > 1 ? String.join(" ", args[1]) : "Sem motivo específico";
 
-     /*  if (isPlayerMuted(target)) {
-            player.sendMessage("O jogador já está mutado.");
+        if (isPlayerMuted(target)) {
+            player.sendMessage(ChatColor.GREEN + "O jogador já está mutado.");
             return false;
-        }*/
+        }
 
         mutedPlayers.put(target, reason);
-        player.sendMessage("Você mutou o jogador " + target.getName() + " por: " + reason);
+        target.sendMessage(ChatColor.RED + " Você foi mutado por: " + reason);
+        player.sendMessage(ChatColor.GREEN + "Você mutou o jogador " + target.getName() + " por: " + reason);
 
         return true;
     }
@@ -63,9 +64,8 @@ public class MuteBlockCommand implements CommandExecutor, Listener {
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
         if (isPlayerMuted(player)){
-            System.out.println("got to event cancel");
             event.setCancelled(true);
-            player.sendMessage("Você está mutado e não pode enviar mensagens.");
+            player.sendMessage(ChatColor.RED + "Você está mutado e não pode enviar mensagens.");
         }
     }
 }

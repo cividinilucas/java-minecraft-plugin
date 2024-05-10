@@ -6,10 +6,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
 
 import java.util.Arrays;
 
-public class BanBlockCommand implements CommandExecutor {
+public class BanBlockCommand implements CommandExecutor, Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -52,7 +53,6 @@ public class BanBlockCommand implements CommandExecutor {
         player.sendMessage("Você baniu o jogador " + target.getDisplayName() + "Pelo motivo: " + reason);
 
         return true;
-
     }
-
+    
 }

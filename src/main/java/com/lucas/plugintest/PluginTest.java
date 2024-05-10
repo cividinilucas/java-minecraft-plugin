@@ -12,6 +12,7 @@ public final class PluginTest extends JavaPlugin{
         saveDefaultConfig();
 
         MuteBlockCommand muteBlockCommand = new MuteBlockCommand();
+        BanBlockCommand banBlockCommand = new BanBlockCommand();
 
         //instancia dos comandos
         getCommand("kick").setExecutor(new KickBlockCommand());
@@ -19,7 +20,9 @@ public final class PluginTest extends JavaPlugin{
         getCommand("config").setExecutor(new ConfigCommand());
         getCommand("ping").setExecutor(new PingBlockCommand());
         getCommand("mute").setExecutor(muteBlockCommand);
+        getCommand("unmute").setExecutor(new UnmuteBlockCommand());
 
         getServer().getPluginManager().registerEvents(muteBlockCommand, this);
+        getServer().getPluginManager().registerEvents(banBlockCommand, this);
     }
 }
