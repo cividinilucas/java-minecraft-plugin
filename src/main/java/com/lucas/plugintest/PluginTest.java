@@ -1,4 +1,7 @@
 package com.lucas.plugintest;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.CompassMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -10,8 +13,9 @@ public final class PluginTest extends JavaPlugin{
     @Override
     public void onEnable() {
         // Plugin startup logic
-        System.out.println("Plugin enabled");
+        System.out.println("Plugin enabled sucessfully");
 
+        //configs
         getConfig().options().copyDefaults();
         saveDefaultConfig();
 
@@ -21,9 +25,7 @@ public final class PluginTest extends JavaPlugin{
 
         MuteBlockCommand muteBlockCommand = new MuteBlockCommand(mutedPlayers);
         BanBlockCommand banBlockCommand = new BanBlockCommand(bannedPlayers);
-
-
-
+        OnPlayerJoinEvent onPlayerJoinEvent = new OnPlayerJoinEvent();
 
         //instancia dos comandos
         getCommand("kick").setExecutor(new KickBlockCommand());
@@ -36,6 +38,7 @@ public final class PluginTest extends JavaPlugin{
 
         getServer().getPluginManager().registerEvents(muteBlockCommand, this);
         getServer().getPluginManager().registerEvents(banBlockCommand, this);
+        getServer().getPluginManager().registerEvents(onPlayerJoinEvent, this);
 
     }
 }
