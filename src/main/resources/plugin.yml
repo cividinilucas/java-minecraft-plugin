@@ -6,6 +6,7 @@ commands:
   kick:
     description: kick a player from the server
   ban:
+<<<<<<< HEAD
     description: ban a player from the server
   config:
   ping:
@@ -15,6 +16,14 @@ commands:
   unmute:
     description: remove the mute
 
+=======
+    description: ban a player
+  config:
+  ping:
+    description: take the ping of the player
+  mute:
+    description: mute a player
+>>>>>>> 4a324cbdbb5284a2856e5e74d545b44f2378af90
 
 
 

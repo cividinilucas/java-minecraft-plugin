@@ -1,5 +1,6 @@
 package com.lucas.plugintest;
 
+<<<<<<< HEAD
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -63,4 +64,21 @@ public class UnmuteBlockCommand implements CommandExecutor {
         return mutedPlayers.containsKey(uuidPlayer);
     }
 
+=======
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+
+
+public class UnmuteBlockCommand implements CommandExecutor {
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
+
+
+
+
+        return false;
+
+    }
+>>>>>>> 4a324cbdbb5284a2856e5e74d545b44f2378af90
 }

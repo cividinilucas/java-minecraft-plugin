@@ -17,6 +17,7 @@ public class PingBlockCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
+<<<<<<< HEAD
         int playerPing = player.getPing();
 
             if(playerPing <= 100) {
@@ -27,6 +28,21 @@ public class PingBlockCommand implements CommandExecutor {
                 player.sendMessage("Seu ping é de: " + ChatColor.DARK_RED + playerPing + "ms");
             }
 
+=======
+        if (args.length == 0) {
+            int playerPing = player.getPing();
+            if(playerPing <= 100) {
+                player.sendMessage("Seu ping é de : " + ChatColor.GREEN + playerPing + "ms");
+            } else if (playerPing > 100 && playerPing <= 200) {
+                player.sendMessage("Seu ping é de: " + ChatColor.RED + playerPing + "ms");
+            } else if (playerPing > 200) {
+                player.sendMessage("Seu ping é de: " + ChatColor.DARK_RED + playerPing + "ms");
+            }
+
+            return true;
+        }
+
+>>>>>>> 4a324cbdbb5284a2856e5e74d545b44f2378af90
         Player target = player.getServer().getPlayer(args[0]);
 
         if (target == null) {
