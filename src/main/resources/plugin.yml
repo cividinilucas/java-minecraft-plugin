@@ -4,14 +4,17 @@ main: com.lucas.plugintest.PluginTest
 api-version: '1.16'
 commands:
   kick:
-    description: kick a player
+    description: kick a player from the server
   ban:
-    description: ban a player
+    description: ban a player from the server
   config:
   ping:
-    description: take the ping of the player
+    description: print the player's latency
   mute:
     description: mute a player
+  unmute:
+    description: remove the mute
+
 
 
 

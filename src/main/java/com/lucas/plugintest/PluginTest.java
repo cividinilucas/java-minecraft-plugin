@@ -1,6 +1,10 @@
 package com.lucas.plugintest;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public final class PluginTest extends JavaPlugin{
 //todas as classes que utilizarao eventos devem implementar o listener
     @Override
@@ -11,8 +15,11 @@ public final class PluginTest extends JavaPlugin{
         getConfig().options().copyDefaults();
         saveDefaultConfig();
 
-        MuteBlockCommand muteBlockCommand = new MuteBlockCommand();
+        Map<UUID, String> mutedPlayers = new HashMap<>();
+
+        MuteBlockCommand muteBlockCommand = new MuteBlockCommand(mutedPlayers);
         BanBlockCommand banBlockCommand = new BanBlockCommand();
+
 
         //instancia dos comandos
         getCommand("kick").setExecutor(new KickBlockCommand());
@@ -20,10 +27,12 @@ public final class PluginTest extends JavaPlugin{
         getCommand("config").setExecutor(new ConfigCommand());
         getCommand("ping").setExecutor(new PingBlockCommand());
         getCommand("mute").setExecutor(muteBlockCommand);
-        getCommand("unmute").setExecutor(new UnmuteBlockCommand());
+        getCommand("unmute").setExecutor(new UnmuteBlockCommand(mutedPlayers));
+
 
         getServer().getPluginManager().registerEvents(muteBlockCommand, this);
         getServer().getPluginManager().registerEvents(banBlockCommand, this);
+
 
     }
 }

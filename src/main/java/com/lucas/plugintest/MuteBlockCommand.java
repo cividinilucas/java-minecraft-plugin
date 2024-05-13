@@ -16,7 +16,11 @@ import java.util.UUID;
 
 public class MuteBlockCommand implements CommandExecutor, Listener {
 
-    private final Map<UUID, String> mutedPlayers = new HashMap<>();
+    private final Map<UUID, String> mutedPlayers;
+
+    public MuteBlockCommand(Map<UUID, String> mutedPlayers) {
+        this.mutedPlayers = mutedPlayers;
+    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
