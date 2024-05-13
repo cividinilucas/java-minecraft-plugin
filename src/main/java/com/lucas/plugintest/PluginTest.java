@@ -32,6 +32,7 @@ public final class PluginTest extends JavaPlugin{
         getCommand("ping").setExecutor(new PingBlockCommand());
         getCommand("mute").setExecutor(muteBlockCommand);
         getCommand("unmute").setExecutor(new UnmuteBlockCommand(mutedPlayers));
+        getCommand("unban").setExecutor(new UnbanBlockCommand(bannedPlayers));
 
         getServer().getPluginManager().registerEvents(muteBlockCommand, this);
         getServer().getPluginManager().registerEvents(banBlockCommand, this);
