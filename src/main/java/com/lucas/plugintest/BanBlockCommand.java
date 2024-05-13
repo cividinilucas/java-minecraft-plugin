@@ -17,7 +17,11 @@ import java.util.UUID;
 
 public class BanBlockCommand implements CommandExecutor, Listener {
 
-    private final Map<UUID, String> banLists = new HashMap<>();
+    private final Map<UUID, String> banLists;
+
+    public BanBlockCommand(Map<UUID, String> banLists) {
+        this.banLists = banLists;
+    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

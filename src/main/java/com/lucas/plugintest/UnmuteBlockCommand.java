@@ -1,6 +1,6 @@
 package com.lucas.plugintest;
 
-<<<<<<< HEAD
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -48,14 +48,19 @@ public class UnmuteBlockCommand implements CommandExecutor {
         Player target = player.getServer().getPlayer(args[0]);
 
         if (target == null) {
-            player.sendMessage("Jogador não encontrado ou não está mutado");
+            player.sendMessage("Jogador não encontrado!");
             return false;
         }
 
         UUID uuidTarget = target.getUniqueId();
 
+        if(!isPlayerMuted(uuidTarget)){
+            player.sendMessage("Jogador não está mutado!");
+        }
+
         mutedPlayers.remove(uuidTarget);
         target.sendMessage(ChatColor.GREEN + "Você foi desmutado!");
+        player.sendMessage(ChatColor.GREEN + "Você desmutou com sucesso o jogador " + target.getName());
 
         return true;
     }
@@ -63,22 +68,4 @@ public class UnmuteBlockCommand implements CommandExecutor {
     public boolean isPlayerMuted(UUID uuidPlayer){
         return mutedPlayers.containsKey(uuidPlayer);
     }
-
-=======
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-
-
-public class UnmuteBlockCommand implements CommandExecutor {
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-
-
-
-
-        return false;
-
-    }
->>>>>>> 4a324cbdbb5284a2856e5e74d545b44f2378af90
 }
