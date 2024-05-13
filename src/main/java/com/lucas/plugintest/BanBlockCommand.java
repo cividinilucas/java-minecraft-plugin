@@ -35,13 +35,13 @@ public class BanBlockCommand implements CommandExecutor, Listener {
 
         //testando a permissao
         if(!player.hasPermission("plugintest.ban")){
-            player.sendMessage("Você não tem permissão");
+            player.sendMessage(ChatColor.RED + "Você não tem permissão para executar esse comando!");
             return false;
         }
 
         //se argumentos forem menor que um, quer dizer que comando foi executado de forma incorreta
         if(args.length < 1 || args.length > 2){
-            player.sendMessage("Uso correto: /ban <Jogador> <Motivo>");
+            player.sendMessage(ChatColor.RED + "Uso correto: /ban <Jogador> <Motivo>");
             return false;
         }
 
@@ -49,7 +49,7 @@ public class BanBlockCommand implements CommandExecutor, Listener {
         Player target = Bukkit.getPlayer(args[0]);
 
         if(target == null){
-            player.sendMessage("Jogador não encontrado.");
+            player.sendMessage(ChatColor.RED + "Jogador não encontrado!");
         }
 
         UUID targetUUID = target.getUniqueId();
@@ -62,7 +62,7 @@ public class BanBlockCommand implements CommandExecutor, Listener {
 
         banLists.put(targetUUID, reason);
         target.kickPlayer(ChatColor.DARK_RED + "Você foi banido!" +  "\n Motivo: " + reason + "\nBanido por: " + player.getDisplayName());
-        player.sendMessage("Você baniu o jogador " + target);
+        player.sendMessage(ChatColor.RED + "Você baniu o jogador " + target);
 
         return true;
     }
@@ -76,7 +76,7 @@ public class BanBlockCommand implements CommandExecutor, Listener {
 
         if(isPlayerBanned(uuid)){
             System.out.println("reach");
-            e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_BANNED, "banido!");
+            e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_BANNED, ChatColor.DARK_RED + "Você foi banido permanentemente!");
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.lucas.plugintest;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,13 +22,13 @@ public class KickBlockCommand implements CommandExecutor{
             Player player = (Player) sender;
 
             if(!player.hasPermission("plugintest.kick")){
-                player.sendMessage("Voce nao tem permissao");
+                player.sendMessage(ChatColor.RED + "Você não tem permissão para executar esse comando!");
                 return false;
             }
 
             //verificar se numero correto do arg foi fornecido
             if(args.length < 1){
-                player.sendMessage("Uso correto: /kick <jogador> <motivo>");
+                player.sendMessage(ChatColor.RED + "Uso correto: /kick <jogador> <motivo>");
                 return false;
             }
 
@@ -36,7 +37,7 @@ public class KickBlockCommand implements CommandExecutor{
             Player target = player.getServer().getPlayer(args[0]);
 
             if(target == null){
-                player.sendMessage("O jogador não está online!");
+                player.sendMessage(ChatColor.RED + "Jogador não encontrado!");
                 return false;
             }
 

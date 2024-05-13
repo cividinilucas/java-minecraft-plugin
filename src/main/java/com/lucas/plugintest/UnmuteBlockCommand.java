@@ -36,26 +36,26 @@ public class UnmuteBlockCommand implements CommandExecutor {
 
         if(!sender.hasPermission("plugintest.unmute")) {
 
-            player.sendMessage("Você não tem permissão");
+            player.sendMessage(ChatColor.RED + "Você não tem permissão para executar esse comando!");
             return false;
         }
 
         if (args.length < 1) {
-            player.sendMessage("Uso correto: /unmute <Jogador>");
+            player.sendMessage(ChatColor.RED + "Uso correto: /unmute <Jogador>");
             return false;
         }
 
         Player target = player.getServer().getPlayer(args[0]);
 
         if (target == null) {
-            player.sendMessage("Jogador não encontrado!");
+            player.sendMessage(ChatColor.RED + "Jogador não encontrado!");
             return false;
         }
 
         UUID uuidTarget = target.getUniqueId();
 
         if(!isPlayerMuted(uuidTarget)){
-            player.sendMessage("Jogador não está mutado!");
+            player.sendMessage(ChatColor.GREEN + "Jogador não está mutado!");
         }
 
         mutedPlayers.remove(uuidTarget);

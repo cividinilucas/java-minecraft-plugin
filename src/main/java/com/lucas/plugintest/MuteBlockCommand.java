@@ -32,7 +32,7 @@ public class MuteBlockCommand implements CommandExecutor, Listener {
         Player player = (Player) sender;
 
         if (!player.hasPermission("plugintest.mute")) {
-            player.sendMessage("Você não tem permissão!");
+            player.sendMessage(ChatColor.RED + "Você não tem permissão para executar esse comando!");
             return false;
         }
 
@@ -45,7 +45,7 @@ public class MuteBlockCommand implements CommandExecutor, Listener {
 
 
         if (target == null) {
-            player.sendMessage(ChatColor.GREEN + "Alvo não encontrado");
+            player.sendMessage(ChatColor.RED + "Jogador não encontrado!");
             return false;
         }
 

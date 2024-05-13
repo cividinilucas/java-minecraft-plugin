@@ -1,6 +1,7 @@
 package com.lucas.plugintest;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -29,31 +30,31 @@ public class UnbanBlockCommand implements CommandExecutor {
         Player player = (Player) sender;
 
         if(!player.hasPermission("plugintest.unban")){
-            player.sendMessage("Você não tem permissão para executar esse comando!");
+            player.sendMessage(ChatColor.RED + "Você não tem permissão para executar esse comando!");
             return false;
         }
 
         if(args.length < 1){
-            player.sendMessage("Uso correto: /unban <Jogador>");
+            player.sendMessage(ChatColor.RED + "Uso correto: /unban <Jogador>");
             return false;
         }
 
         Player target = Bukkit.getPlayer(args[0]);
 
         if(target == null){
-            player.sendMessage("Jogador não encontrado!");
+            player.sendMessage(ChatColor.RED + "Jogador não encontrado!");
             return false;
         }
 
         UUID uuidTarget = target.getUniqueId();
 
         if(!isPlayerBanned(uuidTarget)){
-            player.sendMessage("Jogador não está banido!");
+            player.sendMessage(ChatColor.GREEN + "Jogador não está banido!");
             return false;
         }
 
         bannedPlayers.remove(uuidTarget);
-        player.sendMessage("Você desbaniu com sucesso o jogador " + target.getName());
+        player.sendMessage(ChatColor.GREEN + "Você desbaniu com sucesso o jogador " + target.getName());
 
         return true;
     }
