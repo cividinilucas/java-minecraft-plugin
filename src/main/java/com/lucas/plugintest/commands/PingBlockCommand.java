@@ -1,4 +1,4 @@
-package com.lucas.plugintest;
+package com.lucas.plugintest.commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -20,15 +20,6 @@ public class PingBlockCommand implements CommandExecutor {
 
         int playerPing = player.getPing();
 
-            if(playerPing <= 100) {
-                player.sendMessage("Seu ping é de : " + ChatColor.GREEN + playerPing + "ms");
-            } else if (playerPing <= 200) {
-                player.sendMessage("Seu ping é de: " + ChatColor.RED + playerPing + "ms");
-            } else {
-                player.sendMessage("Seu ping é de: " + ChatColor.DARK_RED + playerPing + "ms");
-            }
-
-
         if (args.length == 0) {
             if(playerPing <= 100) {
                 player.sendMessage("Seu ping é de : " + ChatColor.GREEN + playerPing + "ms");
@@ -49,7 +40,14 @@ public class PingBlockCommand implements CommandExecutor {
         }
 
         int targetPing = target.getPing();
-        player.sendMessage("O ping do jogador " + target.getDisplayName() + " é de: " + ChatColor.GREEN + targetPing + "ms");
+
+        if (targetPing <= 100) {
+            player.sendMessage("O ping do jogador " + target.getName() + ChatColor.GREEN + " é de: " + targetPing + " ms");
+        } else if (playerPing > 100 && playerPing <=200) {
+            player.sendMessage("O ping do jogador " + target.getName() + ChatColor.RED + " é de: " + targetPing + " ms");
+        }else{
+            player.sendMessage("O ping do jogador " + target.getName() + ChatColor.DARK_RED + " é de: " + targetPing + " ms");
+        }
         return true;
     }
 }

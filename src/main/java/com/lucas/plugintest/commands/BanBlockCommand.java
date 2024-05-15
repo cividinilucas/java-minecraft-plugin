@@ -1,4 +1,4 @@
-package com.lucas.plugintest;
+package com.lucas.plugintest.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -11,7 +11,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -75,7 +74,6 @@ public class BanBlockCommand implements CommandExecutor, Listener {
         UUID uuid = e.getUniqueId();
 
         if(isPlayerBanned(uuid)){
-            System.out.println("reach");
             e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_BANNED, ChatColor.DARK_RED + "Você foi banido permanentemente!");
         }
     }

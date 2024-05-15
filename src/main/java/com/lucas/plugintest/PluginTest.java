@@ -1,7 +1,6 @@
 package com.lucas.plugintest;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.CompassMeta;
+import com.lucas.plugintest.commands.*;
+import com.lucas.plugintest.events.OnPlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;

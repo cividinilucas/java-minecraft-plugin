@@ -1,4 +1,4 @@
-package com.lucas.plugintest;
+package com.lucas.plugintest.commands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -10,7 +10,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 

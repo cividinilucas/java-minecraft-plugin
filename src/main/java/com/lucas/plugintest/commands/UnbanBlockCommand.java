@@ -1,4 +1,4 @@
-package com.lucas.plugintest;
+package com.lucas.plugintest.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

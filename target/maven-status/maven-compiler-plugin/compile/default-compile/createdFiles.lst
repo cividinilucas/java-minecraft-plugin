@@ -1,6 +1,9 @@
-com\lucas\plugintest\ConfigCommand.class
-com\lucas\plugintest\KickBlockCommand.class
+com\lucas\plugintest\commands\PingBlockCommand.class
+com\lucas\plugintest\events\OnPlayerJoinEvent.class
+com\lucas\plugintest\commands\ConfigCommand.class
 com\lucas\plugintest\PluginTest.class
-com\lucas\plugintest\PingBlockCommand.class
-com\lucas\plugintest\MuteBlockCommand.class
-com\lucas\plugintest\BanBlockCommand.class
+com\lucas\plugintest\commands\UnbanBlockCommand.class
+com\lucas\plugintest\commands\MuteBlockCommand.class
+com\lucas\plugintest\commands\KickBlockCommand.class
+com\lucas\plugintest\commands\BanBlockCommand.class
+com\lucas\plugintest\commands\UnmuteBlockCommand.class
