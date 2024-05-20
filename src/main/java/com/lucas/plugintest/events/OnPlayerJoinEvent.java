@@ -2,12 +2,11 @@ package com.lucas.plugintest.events;
 
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.*;
-import org.bukkit.entity.Firework;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -15,6 +14,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.CompassMeta;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+
+import javax.swing.text.html.parser.Entity;
 
 public class OnPlayerJoinEvent implements Listener {
 
@@ -41,6 +42,7 @@ public class OnPlayerJoinEvent implements Listener {
 
 
         ItemStack feather = new ItemStack(Material.FEATHER);
+        ItemStack neatherStar = new ItemStack(Material.NETHER_STAR);
 
         //setting a compass
         event.getPlayer().getInventory().setItem(4, compass);
@@ -99,7 +101,5 @@ public class OnPlayerJoinEvent implements Listener {
                 }
             }
         }
-
     }
-
 }

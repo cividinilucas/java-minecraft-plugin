@@ -16,6 +16,17 @@ commands:
     description: remove the mute
   unban:
     description: remove the ban
-
+  vanish:
+    aliases: v
+    description: enter vanish mode
+  tell:
+    aliases:
+      - message
+      - whispher
+  reply:
+    aliases:
+      - r
+      - rep
+  menu:
 
 
