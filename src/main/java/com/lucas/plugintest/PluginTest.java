@@ -1,5 +1,6 @@
 package com.lucas.plugintest;
 import com.lucas.plugintest.commands.*;
+import com.lucas.plugintest.events.MenuEvents;
 import com.lucas.plugintest.events.OnPlayerJoinEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -52,6 +53,7 @@ public final class PluginTest extends JavaPlugin implements Listener{
         getServer().getPluginManager().registerEvents(muteBlockCommand, this);
         getServer().getPluginManager().registerEvents(banBlockCommand, this);
         getServer().getPluginManager().registerEvents(onPlayerJoinEvent, this);
+        Bukkit.getPluginManager().registerEvents(new MenuEvents(), this);
         Bukkit.getPluginManager().registerEvents(this, this);
 
     }
